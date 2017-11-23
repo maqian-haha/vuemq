@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="menu.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="vue" style="margin: 30px">
+    <custom-menu parent="A级标题" son1="a级标题" son2="b级标题" son3="c级标题"></custom-menu>
+    <custom-menu parent="B级标题" son1="a级标题" son2="b级标题" son3="c级标题"></custom-menu>
+</div>
+</body>
+</html>
+<script>
+    Vue.component("custom-menu",{
+        props:["parent","son1","son2","son3"],
+        template:'<div class="menu-Box">\n' +
+        '       <ul class="menu-root">\n' +
+        '           <li @click="slide()">\n' +
+        '               <a href="#">{{this.parent}}</a>\n' +
+        '           </li>\n' +
+        '           <ul class="menu-list" v-show="this.show">\n' +
+        '               <li >\n' +
+        '                   <a href="#">{{this.son1}}</a>\n' +
+        '               </li>\n' +
+        '               <li >\n' +
+        '                   <a href="#">{{this.son2}}</a>\n' +
+        '               </li>\n' +
+        '               <li>\n' +
+        '                   <a href="#">{{this.son3}}</a>\n' +
+        '               </li>\n' +
+        '           </ul>\n' +
+        '       </ul>\n' +
+        '    </div>',
+        data:function(){
+            return {show:false};
+        },
+        methods:{
+            slide(){
+                if(!this.show){
+                    this.show=true;
+                }else{
+                    this.show=false;
+                }
+
+            }
+        }
+    })
+    new Vue({
+        el:".vue",
+    })
+</script>
